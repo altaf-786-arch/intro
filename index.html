@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Altaf Raja - Hacker Profile (Red & White)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: 'Share Tech Mono', monospace;
+      box-sizing: border-box;
+    }
+    body {
+      background: #000;
+      color: white;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+      padding: 20px;
+      text-align: center;
+    }
+    .matrix {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      z-index: -1;
+    }
+    h1 {
+      font-size: 2.8em;
+      animation: typing 4s steps(20), blink .75s step-end infinite;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid red;
+      width: 0;
+      margin: 20px auto;
+      color: white;
+      text-shadow: 0 0 8px red;
+    }
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+    .profile {
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+      border: 2px solid red;
+      border-radius: 50%;
+      box-shadow: 0 0 20px red;
+      margin: 10px auto;
+    }
+    .info-box {
+      background: #111;
+      border: 1px solid red;
+      padding: 15px;
+      margin: 10px auto;
+      width: 90%;
+      max-width: 420px;
+      box-shadow: 0 0 10px red;
+      text-align: left;
+      color: white;
+    }
+    .glow {
+      text-shadow: 0 0 10px red;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .admin {
+      margin-top: 20px;
+    }
+    audio {
+      display: none;
+    }
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2em;
+      }
+      .profile {
+        width: 100px;
+        height: 100px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Canvas -->
+  <canvas class="matrix"></canvas>
+
+  <img src="altaflogo.png" class="profile" alt="Hacker Image" />
+  <h1 class="glow">ALTAF RAJA</h1>
+
+  <div class="info-box glow">
+    <p>👑 <strong>Name:</strong> ALTAF RAJA</p>
+    <p>📌 <strong>Place:</strong> 🇮🇳 INDIA BIHAR</p>
+    <p>🥶 <strong>Age:</strong> 19</p>
+    <p>⚡ <strong>Best Friend:</strong> RIYAZ 😂</p>
+  </div>
+
+  <div class="info-box glow">
+    <p>💻 <strong>Skills:</strong></p>
+    <ul>
+      <li>✅ Ethical Hacking</li>
+      <li>✅ Web Making</li>
+      <li>✅ Termux Expert</li>
+      <li>✅ Termux Tools Making</li>
+      <li>✅ Phishing Web Making</li>
+      <li>✅ Web Info Scraping</li>
+      <li>✅ Network Security</li>
+      <li>✅ ETC</li>
+    </ul>
+  </div>
+
+  <div class="info-box admin glow">
+    <p>🛡️ <strong>ADMIN IN:</strong></p>
+    <p>MR. GHOST HACKER, SYSTEM 404, XYZ</p>
+  </div>
+
+  <!-- Music -->
+  <audio autoplay loop>
+    <source src="hacker.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Matrix Effect -->
+  <script>
+    const canvas = document.querySelector('.matrix');
+    const ctx = canvas.getContext('2d');
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+
+    const letters = '01ALTAFRAJA';
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = Array(Math.floor(columns)).fill(1);
+
+    function drawMatrix() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.font = fontSize + 'px monospace';
+
+      for (let i = 0; i < drops.length; i++) {
+        const char = letters.charAt(Math.floor(Math.random() * letters.length));
+
+        // Alternate red and white
+        ctx.fillStyle = Math.random() > 0.5 ? 'red' : 'white';
+        ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height || Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+
+        drops[i]++;
+      }
+    }
+
+    setInterval(drawMatrix, 33);
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+</html>
